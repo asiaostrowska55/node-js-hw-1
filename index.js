@@ -12,3 +12,13 @@
 
 // // NextTick callback
 // // setImmediate callback
+
+//commonjs
+
+// const logger = require("./contacts");
+// logger.info("uwaga, wiadomosc mess commonjs");
+
+//ecta
+
+import { info } from "./contacts.js";
+info("uwaga, wiadomosc mess ecta");
