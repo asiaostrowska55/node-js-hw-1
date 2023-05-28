@@ -22,3 +22,5 @@
 
 import { info } from "./contacts.js";
 info("uwaga, wiadomosc mess ecta");
+
+const fs = require("fs");
