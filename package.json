@@ -7,6 +7,6 @@
     "nodemon": "^2.0.22"
   },
   "name": "node-js-hw-1",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js"
 }
