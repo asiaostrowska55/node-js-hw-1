@@ -1,31 +1,43 @@
-// setTimeout(() => {
-//   console.log("timeout 3s");
-// }, 2000);
+const { Command } = require("commander");
+const program = new Command();
 
-// setImmediate(function () {
-//   console.log("setImmediate callback");
-// });
+const contacts = require("./contacts");
 
-// process.nextTick(function () {
-//   console.log("NextTick callback");
-// });
+program
+  .option(
+    "-a, --action <string>",
+    "choose action: list, get -i, add -n -e -p, remove -i"
+  )
+  .option("-i, --id <string>", "user id")
+  .option("-n, --name <string>", "user name")
+  .option("-e, --email <string>", "user email")
+  .option("-p, --phone <string>", "user phone");
 
-// // NextTick callback
-// // setImmediate callback
+program.parse(process.argv);
 
-//commonjs
+const argv = program.opts();
 
-// const logger = require("./contacts");
-// logger.info("uwaga, wiadomosc mess commonjs");
+function invokeAction({ action, id, name, email, phone }) {
+  switch (action) {
+    case "list":
+      contacts.listContacts();
+      break;
 
-//ecta
+    case "get":
+      contacts.getContactById(id);
+      break;
 
-// import { info } from "./contacts.js";
-// info("uwaga, wiadomosc mess ecta");
+    case "add":
+      contacts.addContact(name, email, phone);
+      break;
 
-const fs = require("fs");
+    case "remove":
+      contacts.removeContact(id);
+      break;
 
-fs.readFile("./test.txt", (err, data) => {
-  if (err) throw err;
-  console.log(data.toString());
-});
+    default:
+      console.warn("\x1B[31m Unknown action string!");
+  }
+}
+
+invokeAction(argv);

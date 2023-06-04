@@ -8,5 +8,10 @@
   },
   "name": "node-js-hw-1",
   "type": "commonjs",
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "commander": "^10.0.1",
+    "nanoid": "^3.3.6"
+  }
 }
