@@ -1,9 +1,10 @@
 const fs = require("fs").promises;
 const path = require("path");
+const process = require("process");
 const { nanoid } = require("nanoid");
 require("colors");
 
-const contactsPath = path.join("./db", "conctacts.json");
+const contactsPath = path.join(process.cwd(), "db", "contacts.json");
 const contactsData = require("./db/contacts.json");
 
 function conctactsParsed(data) {
@@ -90,6 +91,10 @@ function addContact(name, email, phone) {
       console.log("addContact error".red, err.message);
     }
   });
+
+  console.log(
+    `Added new contact! Name:${name}, Email:${email}, Phone:${phone}, ID: ${ID}`
+  );
 }
 
 module.exports = {
