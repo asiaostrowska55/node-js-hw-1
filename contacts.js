@@ -55,15 +55,11 @@ function removeContact(contactId) {
       if (contactIndex !== -1) {
         contacts.splice(contactIndex, 1);
 
-        fs.writeFile(contactId, JSON.stringify(contacts), (err) => {
-          if (err) {
-            console.log("removeContact error".red, err.message);
-            return;
-          }
-        });
+        fs.writeFile(contactsPath, JSON.stringify(contacts));
+
         console.log(`Removed contact with id: ${contactId}`.green);
       } else {
-        console.log(`No contact with ${contactId} id was found.`.yellow);
+        console.log(`Contact with ID ${contactId} was already removed.`.yellow);
       }
     })
     .catch((error) => console.log(error.message));
@@ -93,7 +89,8 @@ function addContact(name, email, phone) {
   });
 
   console.log(
-    `Added new contact! Name:${name}, Email:${email}, Phone:${phone}, ID: ${ID}`
+    `Added new contact! Name: ${name}, Email: ${email}, Phone: ${phone}, ID: ${ID}`
+      .green
   );
 }
 
